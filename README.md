@@ -1,24 +1,58 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column      | Type   | Options     |
+| ------------| ------ | ----------- |
+| nickname    | string | null: false |
+| email       | string | null: false |
+| password    | string | null: false |
+| family_name | string | null: false |
+| given_name  | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_many :buyers
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column      | Type         | Options                       |
+| ------------| -------------| ------------------------------|
+| seller      | string       | null: false                   |
+| name        | string       | null: false                   |
+| image       | text         | null: false                   |
+| discription | text         | null: false                   |
+| price       | integer      | null: false                   |
+| user_id     | references   | null: false, foreign_key: true|
 
-* Database initialization
+- belongs_to :user
+- has_many   :comments
+- has_one    :buyers
 
-* How to run the test suite
+## comments テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column      | Type         | Options                       |
+| ------------| -------------| ------------------------------|
+| text        | text         | null: false                   |
+| user_id     | references   | null: false, foreign_key: true|
+| item_id     | references   | null: false, foreign_key: true|
 
-* Deployment instructions
+- belongs_to :user
+- belongs_to :item
 
-* ...
+## buyersテーブル
+
+| Column       | Type         | Options                       |
+| -------------| -------------| ------------------------------|
+| postal_code  | integer      | null: false                   |
+| address      | string       | null: false                   |
+| municipality | string       | null: false                   |
+| building_name| references   |                               |
+| phone_number | integer      | null: false                   |
+| user_id      | references   | null: false, foreign_key: true|
+| item_id      | references   | null: false, foreign_key: true|
+
+- belongs_to :user
+_ belongs_to :item 
