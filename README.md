@@ -25,7 +25,7 @@
 | image       | text         | null: false                   |
 | discription | text         | null: false                   |
 | price       | integer      | null: false                   |
-| user_id     | references   | null: false, foreign_key: true|
+| user        | references   | null: false, foreign_key: true|
 
 - belongs_to :user
 - has_many   :comments
@@ -36,8 +36,8 @@
 | Column      | Type         | Options                       |
 | ------------| -------------| ------------------------------|
 | text        | text         | null: false                   |
-| user_id     | references   | null: false, foreign_key: true|
-| item_id     | references   | null: false, foreign_key: true|
+| user        | references   | null: false, foreign_key: true|
+| item        | references   | null: false, foreign_key: true|
 
 - belongs_to :user
 - belongs_to :item
@@ -51,8 +51,8 @@
 | municipality | string       | null: false                   |
 | building_name| references   |                               |
 | phone_number | integer      | null: false                   |
-| user_id      | references   | null: false, foreign_key: true|
-| item_id      | references   | null: false, foreign_key: true|
+| user         | references   | null: false, foreign_key: true|
+| item         | references   | null: false, foreign_key: true|
 
 - belongs_to :user
 _ belongs_to :item 
