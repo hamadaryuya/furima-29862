@@ -11,7 +11,7 @@
 | given_name      | string  | null: false |
 | family_name_kana| string  | null: false |
 | given_name_kana | string  | null: false |
-| birth           | integer | null: false |
+| birth           | date    | null: false |
 
 ### Association
 
@@ -64,6 +64,7 @@
 | -------------| -------------| ------------------------------|
 | user         | references   | null: false, foreign_key: true|
 | item         | references   | null: false, foreign_key: true|
+| address      | references   | null: false, foreign_key: true|
 
 ### Association
 
