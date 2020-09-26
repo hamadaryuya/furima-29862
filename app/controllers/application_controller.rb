@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
-  bedore_action :configere_permitted_parameters, if: :devise_controller?
+  before_action :configere_permitted_parameters, if: :devise_controller?
 
   private
 
