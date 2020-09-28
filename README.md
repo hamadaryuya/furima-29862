@@ -17,7 +17,7 @@
 
 - has_many :items
 - has_many :comments
-- has_many :purchases
+- has_many :orders
 
 ## items テーブル
 
@@ -37,7 +37,7 @@
 
 - belongs_to :user
 - has_many   :comments
-- has_one    :purchase
+- has_one    :order
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :delivery_fee
@@ -58,7 +58,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## purchasesテーブル
+## ordersテーブル
 
 | Column       | Type         | Options                       |
 | -------------| -------------| ------------------------------|
@@ -81,9 +81,9 @@
 | building_name| string       |                               |
 | phone_number | string       | null: false                   |
 | area_id      | integer      | null: false                   |
-| purchase     | references   | null: false, foreign_key:true |
+| order        | references   | null: false, foreign_key:true |
 
 ### Association
 
 - belongs_to_active_hash :area
-- belongs_to :purchase
+- belongs_to :order
