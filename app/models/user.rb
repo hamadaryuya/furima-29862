@@ -5,13 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence: true do
+    NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
+    KANA_REGEX = /\A[ァ-ヶー－]+\z/
     validates :nickname
     validates :email
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i }
-    validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :given_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-    validates :given_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+    validates :family_name, format: { with: NAME_REGEX }
+    validates :given_name, format: { with: NAME_REGEX }
+    validates :family_name_kana, format: { with: KANA_REGEX }
+    validates :given_name_kana, format: { with: KANA_REGEX }
     validates :birth
   end
 end
