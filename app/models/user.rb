@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence: true do
-    NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
-    KANA_REGEX = /\A[ァ-ヶー－]+\z/
+    NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
+    KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
     validates :nickname
     validates :email
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i }

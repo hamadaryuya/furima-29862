@@ -33,9 +33,9 @@ describe User do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it 'emailに@が含まれていない場合は登録できない' do
-        @user.email = "aaa.yahoo.com"
+        @user.email = 'aaa.yahoo.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
@@ -62,13 +62,13 @@ describe User do
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'passwordが英語だけだと登録できない' do
-        @user.password = "asdfgh"
-        @user.password_confirmation = "asdfgh"
+        @user.password = 'asdfgh'
+        @user.password_confirmation = 'asdfgh'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'password_confirmationが空だと登録できない' do
-        @user.password_confirmation = ""
+        @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
