@@ -2,11 +2,6 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :image, presence: true
-
-  validates :price, format: { with: /\A[0-9]+\z/ }
-  validates :price, numericality: { greater_than: 299, less_than: 9_999_999 }
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
@@ -14,10 +9,20 @@ class Item < ApplicationRecord
   belongs_to_active_hash :area
   belongs_to_active_hash :ship_day
 
-  validates :name, :discription, :price, :category_id, :condition_id, :delivery_fee_id, :area_id, :ship_days_id, presence: true
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :delivery_fee_id, numericality: { other_than: 1 }
-  validates :area_id, numericality: { other_than: 1 }
-  validates :ship_days_id, numericality: { other_than: 1 }
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :discription
+    validates :price, format: { with: /\A[0-9]+\z/ }
+    validates :price, numericality: { greater_than: 299, less_than: 9_999_999 }
+    
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :condition_id
+      validates :delivery_fee_id
+      validates :area_id
+      validates :ship_days_id
+    end
+
+  end
 end
