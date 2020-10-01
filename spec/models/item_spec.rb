@@ -60,12 +60,12 @@ describe Item do
       it 'priceが全角数字だと登録できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceに文字列が含まれていると登録できない' do
         @item.price = 'a1000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceが299円以下だと登録できない' do
         @item.price = '299'
