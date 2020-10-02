@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :condition
   belongs_to_active_hash :delivery_fee
   belongs_to_active_hash :area
-  belongs_to_active_hash :ship_day
+  belongs_to_active_hash :ship_days
 
   with_options presence: true do
     validates :image
