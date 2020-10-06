@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
+    @address = OrderAddress.new
   end
 
   def create
@@ -35,5 +36,7 @@ class OrdersController < ApplicationController
   def purchase_params
     params.permit(:postal_code, :municipality, :house_number, :building_name, :phone_number, :area_id, :token, :order_id, :item_id).merge(user_id: current_user.id)
   end
+
+  
 
 end
