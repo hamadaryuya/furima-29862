@@ -4,12 +4,10 @@ class OrdersController < ApplicationController
   before_action :item_find, only:[:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @address = OrderAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @address = OrderAddress.new(purchase_params)
     if @address.valid?
       pay_item
@@ -45,6 +43,6 @@ class OrdersController < ApplicationController
   end
 
   def item_find
-    @@item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 end
