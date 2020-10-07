@@ -9,6 +9,10 @@ describe Address do
       it 'postal_code,municipality,house_number,phone_number,area_id,oreder_idが存在すれば登録できる' do
         expect(@address).to be_valid
       end
+      it 'building_nameが空でも登録ができる' do
+        @address.building_name = ''
+        expect(@address).to be_valid
+      end
     end
 
     context '購入先住所の登録がうまくいかない時' do
