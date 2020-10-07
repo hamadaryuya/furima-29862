@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_index
-  before_action :item_find, only:[:index, :create]
+  before_action :item_find, only: [:index, :create]
 
   def index
     @address = OrderAddress.new
@@ -35,11 +34,6 @@ class OrdersController < ApplicationController
 
   def purchase_params
     params.permit(:postal_code, :municipality, :house_number, :building_name, :phone_number, :area_id, :token, :order_id, :item_id).merge(user_id: current_user.id)
-  end
-
-  def move_to_index
-    @item = Item.find(params[:item_id])
-    redirect_to root_path unless @item.user_id != current_user.id
   end
 
   def item_find
