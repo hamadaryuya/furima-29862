@@ -3,7 +3,7 @@ FactoryBot.define do
     factory :credit_card do
     end
 
-  association :user
-  association :item
+    association :user
+    association :item
   end
 end
