@@ -9,9 +9,13 @@
     <div class='item-img-content'>
       <%= image_tag @item.image ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%#div class='sold-out'>
-        <span>Sold Out!!</span>
+      <% if Order.select('item_id').exists?%>
+          　<% if @item.order.present? %>
+             <div class='sold-out'>
+                <span>Sold Out!!</span>
       </div>
+      <% end %>
+      <% end %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
@@ -22,6 +26,7 @@
         (税込) 送料込み
       </span>
     </div>
+    <% if @item.order.nil? %>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <% if user_signed_in? && current_user.id == @item.user_id%>
@@ -35,6 +40,8 @@
     <% end %>
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
+    <% else %>
+    <% end %>
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
     </div>
